@@ -26,24 +26,24 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
     
     //ナビゲーションのアイテム
-    var helpButton: UIBarButtonItem!
+    fileprivate var helpButton: UIBarButtonItem!
     
     //1回だけ生成するためのフラグ（ViewDidLayoutSubViews内での初期配置用）
-    private var onceFlag = false
+    fileprivate var onceFlag = false
     
     //スクロールの開始位置を格納する変数
-    var scrollBeginingPoint: CGPoint!
+    fileprivate var scrollBeginingPoint: CGPoint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         //識別用のタグ付け
-        self.buttonScrollView.tag = Settings.menu.rawValue
-        self.mainScrollView.tag = Settings.contents.rawValue
+        buttonScrollView.tag = Settings.menu.rawValue
+        mainScrollView.tag = Settings.contents.rawValue
         
         //デリゲートの設定
-        self.navigationController?.delegate = self
-        self.mainScrollView.delegate = self
+        navigationController?.delegate = self
+        mainScrollView.delegate = self
 
         //ナビゲーションと色設定
         self.navigationController?.navigationBar.barTintColor = UIColor.white
@@ -56,15 +56,15 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
         self.navigationController?.navigationBar.titleTextAttributes = attrs
         
         //Buttonを設置
-        self.helpButton = UIBarButtonItem(title: "Help", style: .plain, target: self, action: #selector(ViewController.helpButtonTapped(button:)))
-        self.helpButton.setTitleTextAttributes(
+        helpButton = UIBarButtonItem(title: "Help", style: .plain, target: self, action: #selector(ViewController.helpButtonTapped(button:)))
+        helpButton.setTitleTextAttributes(
             [
                 NSForegroundColorAttributeName : UIColor.gray,
                 NSFontAttributeName: UIFont(name: "Georgia-Bold", size: 13)!
             ], for: .normal)
         
-        self.navigationItem.title = "Welcome To UITrace!"
-        self.navigationItem.rightBarButtonItem = self.helpButton
+        navigationItem.title = "Welcome To UITrace!"
+        navigationItem.rightBarButtonItem = self.helpButton
         
     }
     
@@ -81,22 +81,22 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        if self.onceFlag == false {
+        if onceFlag == false {
         
             //コンテンツ用のScrollViewを初期化
-            self.initScrollViews()
+            initScrollViews()
 
             for i in 0...2 {
                 
                 //メニュー用のスクロールビューにボタンを配置
                 let buttonElement: UIButton! = UIButton()
-                self.buttonScrollView.addSubview(buttonElement)
+                buttonScrollView.addSubview(buttonElement)
                 
                 buttonElement.frame = CGRect(
-                    x: Int(self.buttonScrollView.frame.width) / 3 * i,
+                    x: Int(buttonScrollView.frame.width) / 3 * i,
                     y: 0,
-                    width: Int(self.buttonScrollView.frame.width) / 3,
-                    height: Int(self.buttonScrollView.frame.height)
+                    width: Int(buttonScrollView.frame.width) / 3,
+                    height: Int(buttonScrollView.frame.height)
                 )
                 buttonElement.backgroundColor = UIColor.gray
                 buttonElement.setTitle("サンプル\(i)", for: .normal)
@@ -128,23 +128,23 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
             let currentPoint = scrollView.contentOffset
 
             //下向きのスクロールを行った場合の処理
-            if self.scrollBeginingPoint.y < currentPoint.y {
+            if scrollBeginingPoint.y < currentPoint.y {
                 
                 //自作メニューを隠して、変化量が40以上であればナビゲーションバーも一緒に隠す
-                self.hideMenuScrollView()
+                hideMenuScrollView()
 
                 if currentPoint.y - self.scrollBeginingPoint.y > 40 {
-                    self.navigationController?.setNavigationBarHidden(true, animated: true)
+                    navigationController?.setNavigationBarHidden(true, animated: true)
                 }
 
             //上向きのスクロールを行った場合の処理
             } else {
 
                 //自作メニューを表示して、変化量が40以上であればナビゲーションバーも一緒に表示
-                self.showMenuScrollView()
+                showMenuScrollView()
                 
-                if self.scrollBeginingPoint.y - currentPoint.y > 40 {
-                    self.navigationController?.setNavigationBarHidden(false, animated: true)
+                if scrollBeginingPoint.y - currentPoint.y > 40 {
+                    navigationController?.setNavigationBarHidden(false, animated: true)
                 }
  
             }
@@ -153,9 +153,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
     }
     
     //自作メニューを隠すメソッド（AutoLayoutの制約をいじるだけ）
-    private func hideMenuScrollView() {
+    fileprivate func hideMenuScrollView() {
 
-        self.topConstraint.constant = -64
+        topConstraint.constant = -64
         UIView.animate(withDuration: 0.26, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations:
             
             //変更したAutoLayoutのConstant値を適用する
@@ -167,9 +167,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
     }
     
     //自作メニューを再表示するメソッド（AutoLayoutの制約をいじるだけ）
-    private func showMenuScrollView() {
+    fileprivate func showMenuScrollView() {
 
-        self.topConstraint.constant = 0
+        topConstraint.constant = 0
         UIView.animate(withDuration: 0.26, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations:
             
             //変更したAutoLayoutのConstant値を適用する
@@ -181,21 +181,21 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
     }
     
     //メインスクロールビューの初期化設定
-    private func initScrollViews() {
+    fileprivate func initScrollViews() {
         
         //各種プロパティ値を設定する
-        self.mainScrollView.isPagingEnabled = false
-        self.mainScrollView.isScrollEnabled = true
-        self.mainScrollView.isDirectionalLockEnabled = true
-        self.mainScrollView.showsHorizontalScrollIndicator = false
-        self.mainScrollView.showsVerticalScrollIndicator = true
-        self.mainScrollView.bounces = true
-        self.mainScrollView.scrollsToTop = false
+        mainScrollView.isPagingEnabled = false
+        mainScrollView.isScrollEnabled = true
+        mainScrollView.isDirectionalLockEnabled = true
+        mainScrollView.showsHorizontalScrollIndicator = false
+        mainScrollView.showsVerticalScrollIndicator = true
+        mainScrollView.bounces = true
+        mainScrollView.scrollsToTop = false
         
         //メインスクロールビューの中コンテンツの高さを設定する
-        self.mainScrollView.contentSize = CGSize(
-            width: Int(self.mainScrollView.frame.width),
-            height: Int(self.mainScrollView.frame.height) * 2
+        mainScrollView.contentSize = CGSize(
+            width: Int(mainScrollView.frame.width),
+            height: Int(mainScrollView.frame.height) * 2
         )
     }
     
