@@ -135,6 +135,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
 
                 if currentPoint.y - self.scrollBeginingPoint.y > 40 {
                     navigationController?.setNavigationBarHidden(true, animated: true)
+                
                 }
 
             //上向きのスクロールを行った場合の処理
@@ -156,7 +157,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
     fileprivate func hideMenuScrollView() {
 
         topConstraint.constant = -64
-        UIView.animate(withDuration: 0.26, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations:
+        UIView.animate(withDuration: TimeInterval(UINavigationControllerHideShowBarDuration), delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations:
             
             //変更したAutoLayoutのConstant値を適用する
             {
@@ -170,7 +171,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
     fileprivate func showMenuScrollView() {
 
         topConstraint.constant = 0
-        UIView.animate(withDuration: 0.26, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations:
+        UIView.animate(withDuration: TimeInterval(UINavigationControllerHideShowBarDuration), delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations:
             
             //変更したAutoLayoutのConstant値を適用する
             {
