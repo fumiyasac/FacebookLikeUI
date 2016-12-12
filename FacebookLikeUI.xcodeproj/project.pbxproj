@@ -13,6 +13,8 @@
 		DE1274D61DFED6F3005E05DB /* CardLibraryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE1274D41DFED6F3005E05DB /* CardLibraryCell.xib */; };
 		DE1274D91DFED847005E05DB /* MainContentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1274D71DFED847005E05DB /* MainContentsCell.swift */; };
 		DE1274DA1DFED847005E05DB /* MainContentsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE1274D81DFED847005E05DB /* MainContentsCell.xib */; };
+		DE1274DF1DFEE281005E05DB /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1274DD1DFEE281005E05DB /* PhotoCell.swift */; };
+		DE1274E01DFEE281005E05DB /* PhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE1274DE1DFEE281005E05DB /* PhotoCell.xib */; };
 		DE14E20C1DAEF4C7009D3335 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE14E20B1DAEF4C7009D3335 /* AppDelegate.swift */; };
 		DE14E20E1DAEF4C7009D3335 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE14E20D1DAEF4C7009D3335 /* ViewController.swift */; };
 		DE14E2111DAEF4C8009D3335 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE14E20F1DAEF4C8009D3335 /* Main.storyboard */; };
@@ -46,6 +48,8 @@
 		DE1274D41DFED6F3005E05DB /* CardLibraryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardLibraryCell.xib; sourceTree = "<group>"; };
 		DE1274D71DFED847005E05DB /* MainContentsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainContentsCell.swift; sourceTree = "<group>"; };
 		DE1274D81DFED847005E05DB /* MainContentsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainContentsCell.xib; sourceTree = "<group>"; };
+		DE1274DD1DFEE281005E05DB /* PhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
+		DE1274DE1DFEE281005E05DB /* PhotoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoCell.xib; sourceTree = "<group>"; };
 		DE14E2081DAEF4C7009D3335 /* FacebookLikeUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FacebookLikeUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE14E20B1DAEF4C7009D3335 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE14E20D1DAEF4C7009D3335 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +90,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DE1274DC1DFEE251005E05DB /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				DE1274DD1DFEE281005E05DB /* PhotoCell.swift */,
+				DE1274DE1DFEE281005E05DB /* PhotoCell.xib */,
+			);
+			name = Photo;
+			sourceTree = "<group>";
+		};
 		DE14E1FF1DAEF4C7009D3335 = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +154,7 @@
 		DE8EB2EC1DFECC4100C70E8C /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				DE1274DC1DFEE251005E05DB /* Photo */,
 				DE1274CD1DFED27B005E05DB /* PhotoLibraryCell.swift */,
 				DE1274CE1DFED27B005E05DB /* PhotoLibraryCell.xib */,
 				DE1274D31DFED6F3005E05DB /* CardLibraryCell.swift */,
@@ -265,6 +279,7 @@
 				DE14E2161DAEF4C8009D3335 /* LaunchScreen.storyboard in Resources */,
 				DE14E2131DAEF4C8009D3335 /* Assets.xcassets in Resources */,
 				DE14E2111DAEF4C8009D3335 /* Main.storyboard in Resources */,
+				DE1274E01DFEE281005E05DB /* PhotoCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,6 +308,7 @@
 				DE14E20E1DAEF4C7009D3335 /* ViewController.swift in Sources */,
 				DE14E20C1DAEF4C7009D3335 /* AppDelegate.swift in Sources */,
 				DE1274CF1DFED27B005E05DB /* PhotoLibraryCell.swift in Sources */,
+				DE1274DF1DFEE281005E05DB /* PhotoCell.swift in Sources */,
 				DE1274D51DFED6F3005E05DB /* CardLibraryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
