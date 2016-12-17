@@ -22,6 +22,9 @@
 		DE14E2161DAEF4C8009D3335 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE14E2141DAEF4C8009D3335 /* LaunchScreen.storyboard */; };
 		DE14E2211DAEF4C8009D3335 /* FacebookLikeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE14E2201DAEF4C8009D3335 /* FacebookLikeUITests.swift */; };
 		DE14E22C1DAEF4C8009D3335 /* FacebookLikeUIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE14E22B1DAEF4C8009D3335 /* FacebookLikeUIUITests.swift */; };
+		DE3E30F11E054DB100B34BE2 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3E30EF1E054DB100B34BE2 /* CardCell.swift */; };
+		DE3E30F21E054DB100B34BE2 /* CardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE3E30F01E054DB100B34BE2 /* CardCell.xib */; };
+		DE3E30F41E0564BD00B34BE2 /* CenterCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3E30F31E0564BD00B34BE2 /* CenterCollectionViewFlowLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +66,9 @@
 		DE14E2271DAEF4C8009D3335 /* FacebookLikeUIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FacebookLikeUIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE14E22B1DAEF4C8009D3335 /* FacebookLikeUIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookLikeUIUITests.swift; sourceTree = "<group>"; };
 		DE14E22D1DAEF4C8009D3335 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DE3E30EF1E054DB100B34BE2 /* CardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
+		DE3E30F01E054DB100B34BE2 /* CardCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardCell.xib; sourceTree = "<group>"; };
+		DE3E30F31E0564BD00B34BE2 /* CenterCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,9 +157,28 @@
 			path = FacebookLikeUIUITests;
 			sourceTree = "<group>";
 		};
+		DE3E30EC1E054D7800B34BE2 /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				DE3E30EF1E054DB100B34BE2 /* CardCell.swift */,
+				DE3E30F01E054DB100B34BE2 /* CardCell.xib */,
+			);
+			name = Card;
+			sourceTree = "<group>";
+		};
+		DE3E30F51E0564C500B34BE2 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				DE3E30F31E0564BD00B34BE2 /* CenterCollectionViewFlowLayout.swift */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
 		DE8EB2EC1DFECC4100C70E8C /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				DE3E30F51E0564C500B34BE2 /* Classes */,
+				DE3E30EC1E054D7800B34BE2 /* Card */,
 				DE1274DC1DFEE251005E05DB /* Photo */,
 				DE1274CD1DFED27B005E05DB /* PhotoLibraryCell.swift */,
 				DE1274CE1DFED27B005E05DB /* PhotoLibraryCell.xib */,
@@ -280,6 +305,7 @@
 				DE14E2131DAEF4C8009D3335 /* Assets.xcassets in Resources */,
 				DE14E2111DAEF4C8009D3335 /* Main.storyboard in Resources */,
 				DE1274E01DFEE281005E05DB /* PhotoCell.xib in Resources */,
+				DE3E30F21E054DB100B34BE2 /* CardCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,10 +330,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE3E30F11E054DB100B34BE2 /* CardCell.swift in Sources */,
 				DE1274D91DFED847005E05DB /* MainContentsCell.swift in Sources */,
 				DE14E20E1DAEF4C7009D3335 /* ViewController.swift in Sources */,
 				DE14E20C1DAEF4C7009D3335 /* AppDelegate.swift in Sources */,
 				DE1274CF1DFED27B005E05DB /* PhotoLibraryCell.swift in Sources */,
+				DE3E30F41E0564BD00B34BE2 /* CenterCollectionViewFlowLayout.swift in Sources */,
 				DE1274DF1DFEE281005E05DB /* PhotoCell.swift in Sources */,
 				DE1274D51DFED6F3005E05DB /* CardLibraryCell.swift in Sources */,
 			);

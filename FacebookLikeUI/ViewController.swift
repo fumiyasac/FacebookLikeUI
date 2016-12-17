@@ -40,10 +40,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITableV
         
         //Xibのクラスを読み込む宣言を行う
         let nibPhotoTableView: UINib = UINib(nibName: "PhotoLibraryCell", bundle: nil)
+        let nibCardTableView: UINib = UINib(nibName: "CardLibraryCell", bundle: nil)
         let nibContentsTableView: UINib = UINib(nibName: "MainContentsCell", bundle: nil)
         
-        
         contentsTableView.register(nibPhotoTableView, forCellReuseIdentifier: "PhotoLibraryCell")
+        contentsTableView.register(nibCardTableView, forCellReuseIdentifier: "CardLibraryCell")
         contentsTableView.register(nibContentsTableView, forCellReuseIdentifier: "MainContentsCell")
     }
     
@@ -54,7 +55,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITableV
     
     //テーブルビューのセクション数を決める
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     /* (UITableViewDataSource) */
@@ -62,13 +63,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITableV
     //テーブルビューのセクション内におけるセル数を決める
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        switch section {
-        case 0:
+        if section < 2 {
             return 1
-        case 1:
+        } else {
             return 10
-        default:
-            return 0
         }
     }
     
@@ -76,13 +74,22 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch indexPath.section {
+
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoLibraryCell") as! PhotoLibraryCell
             
             cell.accessoryType = UITableViewCellAccessoryType.none
             cell.selectionStyle = UITableViewCellSelectionStyle.none
             return cell
+
         case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CardLibraryCell") as! CardLibraryCell
+            
+            cell.accessoryType = UITableViewCellAccessoryType.none
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
+            return cell
+
+        case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "MainContentsCell") as! MainContentsCell
 
             cell.accessoryType = UITableViewCellAccessoryType.none
