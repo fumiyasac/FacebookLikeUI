@@ -8,7 +8,10 @@
 
 import UIKit
 
-class ViewController: UIViewController, UINavigationControllerDelegate {
+class ViewController: UIViewController, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
+    
+    //コンテンツリスト表示用のTableView
+    @IBOutlet weak var contentsTableView: UITableView!
     
     //ナビゲーションのアイテム
     fileprivate var helpButton: UIBarButtonItem!
@@ -19,45 +22,87 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //デリゲートの設定
-        navigationController?.delegate = self
-
-        //ナビゲーションと色設定
-        self.navigationController?.navigationBar.barTintColor = UIColor.white
-        
-        //タイトルテキスト用の色設定
-        let attrs = [
+        //NavigationControllerデリゲートと色やタイトル関連の設定
+        self.navigationController?.delegate = self
+        self.navigationController?.navigationBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor.gray,
             NSFontAttributeName : UIFont(name: "Georgia-Bold", size: 15)!
         ]
-        self.navigationController?.navigationBar.titleTextAttributes = attrs
+        self.navigationItem.title = "Welcome To UITrace!"
         
-        //Buttonを設置
-        helpButton = UIBarButtonItem(title: "Help", style: .plain, target: self, action: #selector(ViewController.helpButtonTapped(button:)))
-        helpButton.setTitleTextAttributes(
-            [
-                NSForegroundColorAttributeName : UIColor.gray,
-                NSFontAttributeName: UIFont(name: "Georgia-Bold", size: 13)!
-            ], for: .normal)
+        //UITableViewのデリゲート・データソースの設定
+        contentsTableView.delegate = self
+        contentsTableView.dataSource = self
+
+        //セルの高さの予測値を設定する（高さが可変になる場合のセルが存在する場合）
+        contentsTableView.rowHeight = UITableViewAutomaticDimension
+        contentsTableView.estimatedRowHeight = 10000
         
-        //タイトルを置く
-        navigationItem.title = "Welcome To UITrace!"
-        navigationItem.rightBarButtonItem = helpButton
+        //Xibのクラスを読み込む宣言を行う
+        let nibPhotoTableView: UINib = UINib(nibName: "PhotoLibraryCell", bundle: nil)
+        let nibContentsTableView: UINib = UINib(nibName: "MainContentsCell", bundle: nil)
         
+        
+        contentsTableView.register(nibPhotoTableView, forCellReuseIdentifier: "PhotoLibraryCell")
+        contentsTableView.register(nibContentsTableView, forCellReuseIdentifier: "MainContentsCell")
     }
     
-    //ヘルプボタンタップ時のメソッド
-    func helpButtonTapped(button: UIButton) {
-        print("Help button tapped")
+    /* (Instance Methods) */
+    
+
+    /* (UITableViewDelegate) */
+    
+    //テーブルビューのセクション数を決める
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    /* (UITableViewDataSource) */
+    
+    //テーブルビューのセクション内におけるセル数を決める
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        switch section {
+        case 0:
+            return 1
+        case 1:
+            return 10
+        default:
+            return 0
+        }
+    }
+    
+    //テーブルビューのセル設定を行う
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        switch indexPath.section {
+        case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoLibraryCell") as! PhotoLibraryCell
+            
+            cell.accessoryType = UITableViewCellAccessoryType.none
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
+            return cell
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "MainContentsCell") as! MainContentsCell
+
+            cell.accessoryType = UITableViewCellAccessoryType.none
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
+            return cell
+        default:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
+            return cell!
+        }
     }
     
     /* (UIScrollViewDelegate) */
+
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         
         self.scrollBeginingPoint = scrollView.contentOffset
     }
 
     /* (UIScrollViewDelegate) */
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
 
         
