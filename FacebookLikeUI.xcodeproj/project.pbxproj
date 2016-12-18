@@ -22,9 +22,13 @@
 		DE14E2161DAEF4C8009D3335 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE14E2141DAEF4C8009D3335 /* LaunchScreen.storyboard */; };
 		DE14E2211DAEF4C8009D3335 /* FacebookLikeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE14E2201DAEF4C8009D3335 /* FacebookLikeUITests.swift */; };
 		DE14E22C1DAEF4C8009D3335 /* FacebookLikeUIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE14E22B1DAEF4C8009D3335 /* FacebookLikeUIUITests.swift */; };
+		DE282EE01E0689C900748424 /* CustomTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE282EDF1E0689C900748424 /* CustomTableViewHeader.swift */; };
+		DE282EE21E068AA400748424 /* DetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE282EE11E068AA400748424 /* DetailController.swift */; };
 		DE3E30F11E054DB100B34BE2 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3E30EF1E054DB100B34BE2 /* CardCell.swift */; };
 		DE3E30F21E054DB100B34BE2 /* CardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE3E30F01E054DB100B34BE2 /* CardCell.xib */; };
 		DE3E30F41E0564BD00B34BE2 /* CenterCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3E30F31E0564BD00B34BE2 /* CenterCollectionViewFlowLayout.swift */; };
+		DEB840AE1E06AA5D0088B90F /* BounceHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB840AC1E06AA5D0088B90F /* BounceHeaderView.swift */; };
+		DEB840AF1E06AA5D0088B90F /* BounceHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEB840AD1E06AA5D0088B90F /* BounceHeaderView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,9 +70,13 @@
 		DE14E2271DAEF4C8009D3335 /* FacebookLikeUIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FacebookLikeUIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE14E22B1DAEF4C8009D3335 /* FacebookLikeUIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookLikeUIUITests.swift; sourceTree = "<group>"; };
 		DE14E22D1DAEF4C8009D3335 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DE282EDF1E0689C900748424 /* CustomTableViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewHeader.swift; sourceTree = "<group>"; };
+		DE282EE11E068AA400748424 /* DetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailController.swift; sourceTree = "<group>"; };
 		DE3E30EF1E054DB100B34BE2 /* CardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		DE3E30F01E054DB100B34BE2 /* CardCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardCell.xib; sourceTree = "<group>"; };
 		DE3E30F31E0564BD00B34BE2 /* CenterCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		DEB840AC1E06AA5D0088B90F /* BounceHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BounceHeaderView.swift; sourceTree = "<group>"; };
+		DEB840AD1E06AA5D0088B90F /* BounceHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BounceHeaderView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +139,7 @@
 				DE8EB2EC1DFECC4100C70E8C /* Component */,
 				DE14E20B1DAEF4C7009D3335 /* AppDelegate.swift */,
 				DE14E20D1DAEF4C7009D3335 /* ViewController.swift */,
+				DE282EE11E068AA400748424 /* DetailController.swift */,
 				DE14E20F1DAEF4C8009D3335 /* Main.storyboard */,
 				DE14E2121DAEF4C8009D3335 /* Assets.xcassets */,
 				DE14E2141DAEF4C8009D3335 /* LaunchScreen.storyboard */,
@@ -169,7 +178,10 @@
 		DE3E30F51E0564C500B34BE2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				DEB840AC1E06AA5D0088B90F /* BounceHeaderView.swift */,
+				DEB840AD1E06AA5D0088B90F /* BounceHeaderView.xib */,
 				DE3E30F31E0564BD00B34BE2 /* CenterCollectionViewFlowLayout.swift */,
+				DE282EDF1E0689C900748424 /* CustomTableViewHeader.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -305,6 +317,7 @@
 				DE14E2131DAEF4C8009D3335 /* Assets.xcassets in Resources */,
 				DE14E2111DAEF4C8009D3335 /* Main.storyboard in Resources */,
 				DE1274E01DFEE281005E05DB /* PhotoCell.xib in Resources */,
+				DEB840AF1E06AA5D0088B90F /* BounceHeaderView.xib in Resources */,
 				DE3E30F21E054DB100B34BE2 /* CardCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -335,8 +348,11 @@
 				DE14E20E1DAEF4C7009D3335 /* ViewController.swift in Sources */,
 				DE14E20C1DAEF4C7009D3335 /* AppDelegate.swift in Sources */,
 				DE1274CF1DFED27B005E05DB /* PhotoLibraryCell.swift in Sources */,
+				DEB840AE1E06AA5D0088B90F /* BounceHeaderView.swift in Sources */,
 				DE3E30F41E0564BD00B34BE2 /* CenterCollectionViewFlowLayout.swift in Sources */,
+				DE282EE01E0689C900748424 /* CustomTableViewHeader.swift in Sources */,
 				DE1274DF1DFEE281005E05DB /* PhotoCell.swift in Sources */,
+				DE282EE21E068AA400748424 /* DetailController.swift in Sources */,
 				DE1274D51DFED6F3005E05DB /* CardLibraryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
