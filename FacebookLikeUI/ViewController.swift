@@ -8,6 +8,13 @@
 
 import UIKit
 
+//設定用の定数
+struct TableViewConst {
+    let sectionCount = 3
+    let itemCountOfCollection = 1
+    let itemCountOfList = 10
+}
+
 class ViewController: UIViewController, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
     
     //コンテンツリスト表示用のTableView
@@ -26,9 +33,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITableV
         self.navigationController?.delegate = self
         self.navigationController?.navigationBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor.gray,
-            NSFontAttributeName : UIFont(name: "Georgia-Bold", size: 15)!
+            NSFontAttributeName : UIFont(name: "Georgia-Bold", size: 13)!
         ]
-        self.navigationItem.title = "Welcome To UITrace!"
+        self.navigationItem.title = "Welcome To UI Trace Like FB!"
         
         //UITableViewのデリゲート・データソースの設定
         contentsTableView.delegate = self
@@ -39,12 +46,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITableV
         contentsTableView.estimatedRowHeight = 10000
         
         //Xibのクラスを読み込む宣言を行う
-        let nibPhotoTableView: UINib = UINib(nibName: "PhotoLibraryCell", bundle: nil)
         let nibCardTableView: UINib = UINib(nibName: "CardLibraryCell", bundle: nil)
+        let nibPhotoTableView: UINib = UINib(nibName: "PhotoLibraryCell", bundle: nil)
         let nibContentsTableView: UINib = UINib(nibName: "MainContentsCell", bundle: nil)
-        
-        contentsTableView.register(nibPhotoTableView, forCellReuseIdentifier: "PhotoLibraryCell")
+
         contentsTableView.register(nibCardTableView, forCellReuseIdentifier: "CardLibraryCell")
+        contentsTableView.register(nibPhotoTableView, forCellReuseIdentifier: "PhotoLibraryCell")
         contentsTableView.register(nibContentsTableView, forCellReuseIdentifier: "MainContentsCell")
     }
     
@@ -55,7 +62,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITableV
     
     //テーブルビューのセクション数を決める
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+
+        return TableViewConst().sectionCount
     }
     
     /* (UITableViewDataSource) */
@@ -64,9 +72,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITableV
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if section < 2 {
-            return 1
+            return TableViewConst().itemCountOfCollection
         } else {
-            return 10
+            return TableViewConst().itemCountOfList
         }
     }
     
@@ -76,14 +84,14 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITableV
         switch indexPath.section {
 
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoLibraryCell") as! PhotoLibraryCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CardLibraryCell") as! CardLibraryCell
             
             cell.accessoryType = UITableViewCellAccessoryType.none
             cell.selectionStyle = UITableViewCellSelectionStyle.none
             return cell
 
         case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "CardLibraryCell") as! CardLibraryCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoLibraryCell") as! PhotoLibraryCell
             
             cell.accessoryType = UITableViewCellAccessoryType.none
             cell.selectionStyle = UITableViewCellSelectionStyle.none
@@ -95,10 +103,16 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITableV
             cell.accessoryType = UITableViewCellAccessoryType.none
             cell.selectionStyle = UITableViewCellSelectionStyle.none
             return cell
+
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
             return cell!
         }
+    }
+    
+    //セルがタップされた際の処理
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Num: \(indexPath.row)")
     }
     
     /* (UIScrollViewDelegate) */
@@ -112,7 +126,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITableV
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
 
-        
         //スクロール終了時のy座標を取得する
         let currentPoint = scrollView.contentOffset
 

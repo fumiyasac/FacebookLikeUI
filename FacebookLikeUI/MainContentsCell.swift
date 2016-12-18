@@ -31,6 +31,7 @@ class MainContentsCell: UITableViewCell {
     @IBOutlet weak var contentsImage5: UIImageView!
     @IBOutlet weak var contentsImage6: UIImageView!
 
+    //写真が6つ以上ある場合のボタン表示に関すること
     @IBOutlet weak var contentsDate: UILabel!
     @IBOutlet weak var moreButton: UIButton!
     @IBOutlet weak var moreCount: UILabel!
@@ -48,29 +49,67 @@ class MainContentsCell: UITableViewCell {
     @IBOutlet weak fileprivate var contentImage5Height: NSLayoutConstraint!
     @IBOutlet weak fileprivate var contentImage6Width: NSLayoutConstraint!
     @IBOutlet weak fileprivate var contentImage6Height: NSLayoutConstraint!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         
         //TEST: 画像の制約を動的に変更するテスト
         setLayoutConstraintSetting(count: 6)
-    }
-
-    //該当番号のImageView(サムネイル)のセットを行う
-    func setImageViews(images: [UIImage]) {
         
+        //TEST: 各画像へのGesture付与に関するテスト
         let targetImageViewSet: [UIImageView] = [
             contentsImage1,
             contentsImage2,
             contentsImage3,
             contentsImage4,
-            contentsImage5,
+            contentsImage6
+        ]
+        for (_, targetImage) in targetImageViewSet.enumerated() {
+            let imageTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MainContentsCell.tapGesture(sender:)))
+            targetImage.addGestureRecognizer(imageTap)
+        }
+
+    }
+
+    //該当番号のImageView(サムネイル)のセットを行う
+    func setImageViews(images: [UIImage]) {
+        
+        //contentsImage5はレイアウト調整用なのでGestureRecognizer付与対象としない
+        /**
+         * InterfaceBuilderで各サムネイルに対して下記のようにタグを設置する
+         *
+         * contentsImage1.tag = 1
+         * contentsImage2.tag = 2
+         * contentsImage3.tag = 3
+         * contentsImage4.tag = 4
+         * contentsImage6.tag = 5
+         */
+        let targetImageViewSet: [UIImageView] = [
+            contentsImage1,
+            contentsImage2,
+            contentsImage3,
+            contentsImage4,
             contentsImage6
         ]
         
         for (index, targetImage) in images.enumerated() {
+            
+            let imageTap = UITapGestureRecognizer(target: self, action: #selector(MainContentsCell.tapGesture(sender:)))
+
             targetImageViewSet[index].image = targetImage
+            targetImageViewSet[index].addGestureRecognizer(imageTap)
         }
+    }
+    
+    //「もっと他の画像を見る」ボタンのアクション
+    @IBAction func moreImageAction(_ sender: UIButton) {
+        print("moreImageAction Tapped.")
+    }
+
+    //サムネイル画像のTapGesture発動時に実行されるメソッド
+    func tapGesture(sender: UITapGestureRecognizer) {
+        let targetNumber: Int = (sender.view?.tag)!
+        print("Image\(targetNumber) Tapped.")
     }
     
     //AutoLayoutの制約を画像枚数に応じて設定するメソッド
@@ -189,25 +228,27 @@ class MainContentsCell: UITableViewCell {
 
         case 4:
             
-            let mainRect: CGFloat        = CGFloat(DeviceSize.screenWidth() - 30) / 2
+            let subRect: CGFloat         = 140
+            let mainRectWidth: CGFloat   = CGFloat(DeviceSize.screenWidth() - subRect - 30)
+            let mainRectHeight: CGFloat  = subRect
+
+            contentImage1Height.constant = mainRectHeight
+            contentImage1Width.constant  = mainRectWidth
             
-            contentImage1Height.constant = mainRect
-            contentImage1Width.constant  = mainRect
+            contentImage2Height.constant = subRect
+            contentImage2Width.constant  = subRect
             
-            contentImage2Height.constant = mainRect
-            contentImage2Width.constant  = mainRect
+            contentImage3Height.constant = subRect
+            contentImage3Width.constant  = subRect
             
-            contentImage3Height.constant = mainRect
-            contentImage3Width.constant  = mainRect
-            
-            contentImage4Height.constant = mainRect
-            contentImage4Width.constant  = mainRect
+            contentImage4Height.constant = mainRectHeight
+            contentImage4Width.constant  = mainRectWidth
             
             contentImage5Height.constant = 0
-            contentImage5Width.constant  = mainRect
+            contentImage5Width.constant  = subRect
             
             contentImage6Height.constant = 0
-            contentImage6Width.constant  = mainRect
+            contentImage6Width.constant  = mainRectWidth
             
             self.layoutIfNeeded()
             
@@ -239,19 +280,13 @@ class MainContentsCell: UITableViewCell {
             self.layoutIfNeeded()
 
             //ボタンを有効化する
-            moreButton.isEnabled = true
-            moreButton.alpha     = 0.45
-            moreCount.isEnabled  = true
-            moreCount.alpha      = 1
+            if count > 5 {
+                moreButton.isEnabled = true
+                moreButton.alpha     = 0.45
+                moreCount.isEnabled  = true
+                moreCount.alpha      = 1
+            }
         }
-    }
-    
-    //TODO: サムネイルに該当のGestureRecognizerをつける
-    
-    
-    //「もっと他の画像を見る」ボタンのアクション
-    @IBAction func moreImageAction(_ sender: UIButton) {
-        print("moreImageAction Tapped.")
     }
 
     //配置しているUIImageViewの幅と高さの制約の優先度を下げる
