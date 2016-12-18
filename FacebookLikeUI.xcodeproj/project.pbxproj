@@ -27,8 +27,11 @@
 		DE3E30F11E054DB100B34BE2 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3E30EF1E054DB100B34BE2 /* CardCell.swift */; };
 		DE3E30F21E054DB100B34BE2 /* CardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE3E30F01E054DB100B34BE2 /* CardCell.xib */; };
 		DE3E30F41E0564BD00B34BE2 /* CenterCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3E30F31E0564BD00B34BE2 /* CenterCollectionViewFlowLayout.swift */; };
-		DEB840AE1E06AA5D0088B90F /* BounceHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB840AC1E06AA5D0088B90F /* BounceHeaderView.swift */; };
-		DEB840AF1E06AA5D0088B90F /* BounceHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEB840AD1E06AA5D0088B90F /* BounceHeaderView.xib */; };
+		DEB840B11E06B9DE0088B90F /* ImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB840B01E06B9DE0088B90F /* ImageController.swift */; };
+		DEB840B41E06E1C90088B90F /* ThumbnailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB840B21E06E1C90088B90F /* ThumbnailCell.swift */; };
+		DEB840B51E06E1C90088B90F /* ThumbnailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEB840B31E06E1C90088B90F /* ThumbnailCell.xib */; };
+		DEB840B81E06E35E0088B90F /* Sample.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB840B71E06E35E0088B90F /* Sample.swift */; };
+		DEB840BA1E06E7B00088B90F /* SampleMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB840B91E06E7B00088B90F /* SampleMock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,8 +78,11 @@
 		DE3E30EF1E054DB100B34BE2 /* CardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		DE3E30F01E054DB100B34BE2 /* CardCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardCell.xib; sourceTree = "<group>"; };
 		DE3E30F31E0564BD00B34BE2 /* CenterCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
-		DEB840AC1E06AA5D0088B90F /* BounceHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BounceHeaderView.swift; sourceTree = "<group>"; };
-		DEB840AD1E06AA5D0088B90F /* BounceHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BounceHeaderView.xib; sourceTree = "<group>"; };
+		DEB840B01E06B9DE0088B90F /* ImageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageController.swift; path = ../ImageController.swift; sourceTree = "<group>"; };
+		DEB840B21E06E1C90088B90F /* ThumbnailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThumbnailCell.swift; sourceTree = "<group>"; };
+		DEB840B31E06E1C90088B90F /* ThumbnailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThumbnailCell.xib; sourceTree = "<group>"; };
+		DEB840B71E06E35E0088B90F /* Sample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sample.swift; sourceTree = "<group>"; };
+		DEB840B91E06E7B00088B90F /* SampleMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleMock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,9 +142,11 @@
 		DE14E20A1DAEF4C7009D3335 /* FacebookLikeUI */ = {
 			isa = PBXGroup;
 			children = (
+				DEB840B61E06E32B0088B90F /* Models */,
 				DE8EB2EC1DFECC4100C70E8C /* Component */,
 				DE14E20B1DAEF4C7009D3335 /* AppDelegate.swift */,
 				DE14E20D1DAEF4C7009D3335 /* ViewController.swift */,
+				DEB840B01E06B9DE0088B90F /* ImageController.swift */,
 				DE282EE11E068AA400748424 /* DetailController.swift */,
 				DE14E20F1DAEF4C8009D3335 /* Main.storyboard */,
 				DE14E2121DAEF4C8009D3335 /* Assets.xcassets */,
@@ -178,8 +186,6 @@
 		DE3E30F51E0564C500B34BE2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				DEB840AC1E06AA5D0088B90F /* BounceHeaderView.swift */,
-				DEB840AD1E06AA5D0088B90F /* BounceHeaderView.xib */,
 				DE3E30F31E0564BD00B34BE2 /* CenterCollectionViewFlowLayout.swift */,
 				DE282EDF1E0689C900748424 /* CustomTableViewHeader.swift */,
 			);
@@ -198,8 +204,19 @@
 				DE1274D41DFED6F3005E05DB /* CardLibraryCell.xib */,
 				DE1274D71DFED847005E05DB /* MainContentsCell.swift */,
 				DE1274D81DFED847005E05DB /* MainContentsCell.xib */,
+				DEB840B21E06E1C90088B90F /* ThumbnailCell.swift */,
+				DEB840B31E06E1C90088B90F /* ThumbnailCell.xib */,
 			);
 			name = Component;
+			sourceTree = "<group>";
+		};
+		DEB840B61E06E32B0088B90F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DEB840B71E06E35E0088B90F /* Sample.swift */,
+				DEB840B91E06E7B00088B90F /* SampleMock.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -311,13 +328,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE1274D01DFED27B005E05DB /* PhotoLibraryCell.xib in Resources */,
+				DEB840B51E06E1C90088B90F /* ThumbnailCell.xib in Resources */,
 				DE1274D61DFED6F3005E05DB /* CardLibraryCell.xib in Resources */,
 				DE1274DA1DFED847005E05DB /* MainContentsCell.xib in Resources */,
 				DE14E2161DAEF4C8009D3335 /* LaunchScreen.storyboard in Resources */,
 				DE14E2131DAEF4C8009D3335 /* Assets.xcassets in Resources */,
 				DE14E2111DAEF4C8009D3335 /* Main.storyboard in Resources */,
 				DE1274E01DFEE281005E05DB /* PhotoCell.xib in Resources */,
-				DEB840AF1E06AA5D0088B90F /* BounceHeaderView.xib in Resources */,
 				DE3E30F21E054DB100B34BE2 /* CardCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -348,11 +365,14 @@
 				DE14E20E1DAEF4C7009D3335 /* ViewController.swift in Sources */,
 				DE14E20C1DAEF4C7009D3335 /* AppDelegate.swift in Sources */,
 				DE1274CF1DFED27B005E05DB /* PhotoLibraryCell.swift in Sources */,
-				DEB840AE1E06AA5D0088B90F /* BounceHeaderView.swift in Sources */,
 				DE3E30F41E0564BD00B34BE2 /* CenterCollectionViewFlowLayout.swift in Sources */,
+				DEB840B41E06E1C90088B90F /* ThumbnailCell.swift in Sources */,
+				DEB840BA1E06E7B00088B90F /* SampleMock.swift in Sources */,
+				DEB840B11E06B9DE0088B90F /* ImageController.swift in Sources */,
 				DE282EE01E0689C900748424 /* CustomTableViewHeader.swift in Sources */,
 				DE1274DF1DFEE281005E05DB /* PhotoCell.swift in Sources */,
 				DE282EE21E068AA400748424 /* DetailController.swift in Sources */,
+				DEB840B81E06E35E0088B90F /* Sample.swift in Sources */,
 				DE1274D51DFED6F3005E05DB /* CardLibraryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,6 +8,7 @@
 
 import UIKit
 
+/* バウンドするヘッダーに関する設定(このあたりは後で解説をする) */
 class CustomTableViewHeader: UIView {
 
     var heightLayoutConstraint = NSLayoutConstraint()
@@ -21,13 +22,9 @@ class CustomTableViewHeader: UIView {
 
         self.backgroundColor = UIColor.white
         
-        // The container view is needed to extend the visible area for the image view
-        // to include that below the navigation bar. If this container view isn't present
-        // the image view would be clipped at the navigation bar's bottom and the parallax
-        // effect would not work correctly
-        
         containerView.translatesAutoresizingMaskIntoConstraints = false
         containerView.backgroundColor = UIColor.red
+
         self.addSubview(containerView)
         
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[containerView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["containerView" : containerView]))
@@ -46,18 +43,19 @@ class CustomTableViewHeader: UIView {
         imageView.image = UIImage(named: "onigiri")
         
         containerView.addSubview(imageView)
+
         containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[imageView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["imageView" : imageView]))
+        
         bottomLayoutConstraint = NSLayoutConstraint(item: imageView, attribute: .bottom, relatedBy: .equal, toItem: containerView, attribute: .bottom, multiplier: 1.0, constant: 0.0)
         containerView.addConstraint(bottomLayoutConstraint)
+
         heightLayoutConstraint = NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal, toItem: containerView, attribute: .height, multiplier: 1.0, constant: 0.0)
         containerView.addConstraint(heightLayoutConstraint)
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-    }
-    
-    
+    }    
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         containerLayoutConstraint.constant = scrollView.contentInset.top

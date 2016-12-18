@@ -12,19 +12,14 @@ import UIKit
 struct TableViewConst {
     let sectionCount = 3
     let itemCountOfCollection = 1
-    let itemCountOfList = 10
 }
 
 class ViewController: UIViewController, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
     
     //コンテンツリスト表示用のTableView
     @IBOutlet weak var contentsTableView: UITableView!
-    
-    //ナビゲーションのアイテム
-    fileprivate var helpButton: UIBarButtonItem!
 
-    //スクロールの開始位置を格納する変数
-    fileprivate var scrollBeginingPoint: CGPoint!
+    var models: [Sample] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +30,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITableV
             NSForegroundColorAttributeName : UIColor.gray,
             NSFontAttributeName : UIFont(name: "Georgia-Bold", size: 13)!
         ]
-        self.navigationItem.title = "Welcome To UI Trace Like FB!"
+        self.navigationItem.title = "Facebookを意識したレイアウトサンプル"
         
         //UITableViewのデリゲート・データソースの設定
         contentsTableView.delegate = self
@@ -53,11 +48,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITableV
         contentsTableView.register(nibCardTableView, forCellReuseIdentifier: "CardLibraryCell")
         contentsTableView.register(nibPhotoTableView, forCellReuseIdentifier: "PhotoLibraryCell")
         contentsTableView.register(nibContentsTableView, forCellReuseIdentifier: "MainContentsCell")
+        
+        models = SampleMock.getSampleList()
     }
     
-    /* (Instance Methods) */
-    
-
     /* (UITableViewDelegate) */
     
     //テーブルビューのセクション数を決める
@@ -74,7 +68,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITableV
         if section < 2 {
             return TableViewConst().itemCountOfCollection
         } else {
-            return TableViewConst().itemCountOfList
+            return models.count
         }
     }
     
@@ -100,6 +94,38 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITableV
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "MainContentsCell") as! MainContentsCell
 
+            let model = models[indexPath.row]
+
+            //文字データ・画像データをセルに表示する
+            cell.contentsTitle.text = model.title
+            cell.contentsSubTitle.text = model.catchcopy
+            cell.contentsDate.text = model.datetime
+            cell.contentsDescription.text = model.description
+
+            let imageList: [UIImage] = model.imageArray
+            cell.setImageViews(images: imageList)
+            
+            //MainContentsCell側に設定したクロージャーの内部の処理を記載する
+            cell.transitionClosure = { [weak self] num in
+                
+                if num != nil {
+                    
+                    //MainContentsCell側の画像がタップがされた場合は該当画像の表示をポップアップで行う
+                    let toVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ImageController") as! ImageController
+                    toVC.targetImageList = imageList
+                    toVC.targetImageCount = num!
+                    self?.present(toVC, animated: false, completion: nil)
+                    
+                } else {
+                    
+                    //MainContentsCell側のボタンがタップがされた場合は画像一覧の表示を行う
+                    let toVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailController") as! DetailController
+                    toVC.targetImageList = imageList
+                    self?.navigationController?.pushViewController(toVC, animated: true)
+                }
+
+            }
+            
             cell.accessoryType = UITableViewCellAccessoryType.none
             cell.selectionStyle = UITableViewCellSelectionStyle.none
             return cell
@@ -109,39 +135,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITableV
             return cell!
         }
     }
-    
+
     //セルがタップされた際の処理
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Num: \(indexPath.row)")
-    }
-    
-    /* (UIScrollViewDelegate) */
-
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        
-        self.scrollBeginingPoint = scrollView.contentOffset
+        print("Cell number: \(indexPath.row)")
     }
 
-    /* (UIScrollViewDelegate) */
-
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-
-        //スクロール終了時のy座標を取得する
-        let currentPoint = scrollView.contentOffset
-
-        //下向きのスクロールを行った場合の処理
-        if scrollBeginingPoint.y < currentPoint.y {
-                
-            navigationController?.setNavigationBarHidden(true, animated: true)
-
-        //上向きのスクロールを行った場合の処理
-        } else {
-            
-            navigationController?.setNavigationBarHidden(false, animated: true)
-        }
-
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

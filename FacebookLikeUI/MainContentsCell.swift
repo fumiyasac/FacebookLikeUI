@@ -17,7 +17,15 @@ struct DeviceSize {
     }
 }
 
+//画像の表示最大枚数に関する定数
+struct ImageConfig {
+    static let maxPhotoCount = 6
+}
+
 class MainContentsCell: UITableViewCell {
+
+    //セル側で変数として持っているクロージャー
+    var transitionClosure: ((Int?) -> ())?
 
     //UIパーツの配置
     @IBOutlet weak var contentsTitle: UILabel!
@@ -52,30 +60,14 @@ class MainContentsCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        //TEST: 画像の制約を動的に変更するテスト
-        setLayoutConstraintSetting(count: 5)
-        
-        //TEST: 各画像へのGesture付与に関するテスト
-        let targetImageViewSet: [UIImageView] = [
-            contentsImage1,
-            contentsImage2,
-            contentsImage3,
-            contentsImage4,
-            contentsImage5,
-            contentsImage6
-        ]
-        for (_, targetImage) in targetImageViewSet.enumerated() {
-            let imageTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MainContentsCell.tapGesture(sender:)))
-            targetImage.addGestureRecognizer(imageTap)
-        }
-
     }
 
     //該当番号のImageView(サムネイル)のセットを行う
     func setImageViews(images: [UIImage]) {
+
+        //画像枚数に応じて制約を決定する
+        setLayoutConstraintSetting(count: images.count)
         
-        //contentsImage5はレイアウト調整用なのでGestureRecognizer付与対象としない
         /**
          * InterfaceBuilderで各サムネイルに対して下記のようにタグを設置する
          *
@@ -97,26 +89,28 @@ class MainContentsCell: UITableViewCell {
 
         //渡された画像をUIImageViewに入れてTapGestureを付与する
         for (index, targetImage) in images.enumerated() {
-
-            let imageTap = UITapGestureRecognizer(target: self, action: #selector(MainContentsCell.tapGesture(sender:)))
-            targetImageViewSet[index].image = targetImage
-            targetImageViewSet[index].addGestureRecognizer(imageTap)
+            
+            if index < ImageConfig.maxPhotoCount {
+                let imageTap = UITapGestureRecognizer(target: self, action: #selector(MainContentsCell.tapGesture(sender:)))
+                targetImageViewSet[index].image = targetImage
+                targetImageViewSet[index].addGestureRecognizer(imageTap)
+            }
         }
     }
     
     //「もっと他の画像を見る」ボタンのアクション
     @IBAction func moreImageAction(_ sender: UIButton) {
-        print("moreImageAction Tapped.")
+        transitionClosure!(nil)
     }
 
     //サムネイル画像のTapGesture発動時に実行されるメソッド
     func tapGesture(sender: UITapGestureRecognizer) {
         let targetNumber: Int = (sender.view?.tag)!
-        print("Image\(targetNumber) Tapped.")
+        transitionClosure!(targetNumber)
     }
     
     //AutoLayoutの制約を画像枚数に応じて設定するメソッド
-    func setLayoutConstraintSetting(count: Int) {
+    fileprivate func setLayoutConstraintSetting(count: Int) {
         
         //もっと見るボタンに関しては5枚より多い場合に表示するので初期状態では無効化
         moreButton.isEnabled = false
@@ -310,11 +304,13 @@ class MainContentsCell: UITableViewCell {
             self.layoutIfNeeded()
             
             //ボタンを有効化する
-            if count > 6 {
+            if count > ImageConfig.maxPhotoCount {
                 moreButton.isEnabled = true
                 moreButton.alpha     = 0.45
                 moreCount.isEnabled  = true
                 moreCount.alpha      = 1
+                let otherPhotoCount  = count - ImageConfig.maxPhotoCount
+                moreCount.text       = "他\(otherPhotoCount)件"
             }
         }
     }
