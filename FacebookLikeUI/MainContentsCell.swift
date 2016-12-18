@@ -54,7 +54,7 @@ class MainContentsCell: UITableViewCell {
         super.awakeFromNib()
         
         //TEST: 画像の制約を動的に変更するテスト
-        setLayoutConstraintSetting(count: 6)
+        setLayoutConstraintSetting(count: 5)
         
         //TEST: 各画像へのGesture付与に関するテスト
         let targetImageViewSet: [UIImageView] = [
@@ -62,6 +62,7 @@ class MainContentsCell: UITableViewCell {
             contentsImage2,
             contentsImage3,
             contentsImage4,
+            contentsImage5,
             contentsImage6
         ]
         for (_, targetImage) in targetImageViewSet.enumerated() {
@@ -82,20 +83,22 @@ class MainContentsCell: UITableViewCell {
          * contentsImage2.tag = 2
          * contentsImage3.tag = 3
          * contentsImage4.tag = 4
-         * contentsImage6.tag = 5
+         * contentsImage5.tag = 5
+         * contentsImage6.tag = 6
          */
         let targetImageViewSet: [UIImageView] = [
             contentsImage1,
             contentsImage2,
             contentsImage3,
             contentsImage4,
+            contentsImage5,
             contentsImage6
         ]
-        
-        for (index, targetImage) in images.enumerated() {
-            
-            let imageTap = UITapGestureRecognizer(target: self, action: #selector(MainContentsCell.tapGesture(sender:)))
 
+        //渡された画像をUIImageViewに入れてTapGestureを付与する
+        for (index, targetImage) in images.enumerated() {
+
+            let imageTap = UITapGestureRecognizer(target: self, action: #selector(MainContentsCell.tapGesture(sender:)))
             targetImageViewSet[index].image = targetImage
             targetImageViewSet[index].addGestureRecognizer(imageTap)
         }
@@ -206,23 +209,23 @@ class MainContentsCell: UITableViewCell {
             let mainRectWidth: CGFloat   = CGFloat(DeviceSize.screenWidth() - subRect - 30)
             let mainRectHeight: CGFloat  = CGFloat(subRect * 2)
             
-            contentImage1Height.constant = mainRectHeight
-            contentImage1Width.constant  = mainRectWidth
+            contentImage1Height.constant = subRect
+            contentImage1Width.constant  = subRect
             
-            contentImage2Height.constant = subRect
-            contentImage2Width.constant  = subRect
+            contentImage2Height.constant = mainRectHeight
+            contentImage2Width.constant  = mainRectWidth
             
-            contentImage3Height.constant = 0
-            contentImage3Width.constant  = mainRectWidth
+            contentImage3Height.constant = subRect
+            contentImage3Width.constant  = subRect
             
-            contentImage4Height.constant = subRect
-            contentImage4Width.constant  = subRect
+            contentImage4Height.constant = 0
+            contentImage4Width.constant  = mainRectWidth
             
             contentImage5Height.constant = 0
-            contentImage5Width.constant  = mainRectWidth
+            contentImage5Width.constant  = subRect
             
             contentImage6Height.constant = 0
-            contentImage6Width.constant  = subRect
+            contentImage6Width.constant  = mainRectWidth
             
             self.layoutIfNeeded()
 
@@ -252,35 +255,62 @@ class MainContentsCell: UITableViewCell {
             
             self.layoutIfNeeded()
             
-        default:
+        case 5:
             
             let photoAreaWidth: CGFloat  = CGFloat(DeviceSize.screenWidth() - 30)
             let subRect: CGFloat         = 100
             let mainRectWidth: CGFloat   = photoAreaWidth - subRect
             let mainRectHeight: CGFloat  = (subRect * 3) / 2
             
-            contentImage1Height.constant = mainRectHeight
-            contentImage1Width.constant  = mainRectWidth
+            contentImage1Height.constant = subRect
+            contentImage1Width.constant  = subRect
             
-            contentImage2Height.constant = subRect
-            contentImage2Width.constant  = subRect
+            contentImage2Height.constant = mainRectHeight
+            contentImage2Width.constant  = mainRectWidth
             
-            contentImage3Height.constant = contentImage1Height.constant
-            contentImage3Width.constant  = contentImage1Width.constant
+            contentImage3Height.constant = subRect
+            contentImage3Width.constant  = subRect
             
-            contentImage4Height.constant = contentImage2Height.constant
-            contentImage4Width.constant  = contentImage2Height.constant
+            contentImage4Height.constant = mainRectHeight
+            contentImage4Width.constant  = mainRectWidth
             
-            contentImage5Height.constant = 0
-            contentImage5Width.constant  = contentImage1Width.constant
+            contentImage5Height.constant = subRect
+            contentImage5Width.constant  = subRect
             
-            contentImage6Height.constant = contentImage2Height.constant
-            contentImage6Width.constant  = contentImage2Height.constant
+            contentImage6Height.constant = 0
+            contentImage6Width.constant  = mainRectWidth
             
             self.layoutIfNeeded()
 
+        default:
+            
+            let subRect: CGFloat         = 140
+            let mainRectWidth: CGFloat   = CGFloat(DeviceSize.screenWidth() - subRect - 30)
+            let mainRectHeight: CGFloat  = subRect
+            let halfRect: CGFloat        = CGFloat(DeviceSize.screenWidth() - 30) / 2
+            
+            contentImage1Height.constant = subRect
+            contentImage1Width.constant  = subRect
+            
+            contentImage2Height.constant = mainRectHeight
+            contentImage2Width.constant  = mainRectWidth
+            
+            contentImage3Height.constant = halfRect
+            contentImage3Width.constant  = halfRect
+            
+            contentImage4Height.constant = halfRect
+            contentImage4Width.constant  = halfRect
+            
+            contentImage5Height.constant = mainRectHeight
+            contentImage5Width.constant  = mainRectWidth
+            
+            contentImage6Height.constant = subRect
+            contentImage6Width.constant  = subRect
+            
+            self.layoutIfNeeded()
+            
             //ボタンを有効化する
-            if count > 5 {
+            if count > 6 {
                 moreButton.isEnabled = true
                 moreButton.alpha     = 0.45
                 moreCount.isEnabled  = true
