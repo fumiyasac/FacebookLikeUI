@@ -121,7 +121,7 @@ class MainContentsCell: UITableViewCell {
         //各配置済のImageViewのConstraintにおいて、幅と高さの優先度を下げる
         downConstraintPriority()
         
-        //この部分はもうちょっとエレガントに書けないか...
+        //画像サムネイルの枚数に合わせてそれぞれのUIImageViewの幅と高さを決定する
         switch count {
         
         case 0:
