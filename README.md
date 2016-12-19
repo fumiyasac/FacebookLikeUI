@@ -23,20 +23,6 @@
 タイル状のUI表現をする際には、様々な手法があるかと思いますが、今回は複雑な段違いのサムネイルレイアウトをするためにAutoLayoutの制約を利用して1枚のセルの中で完結するようにしました。
 InterfaceBuilderでの設定とコードを組み合わせた実装になっています。（それぞれのUIImageViewの幅と高さはAutoLayoutの制約を計算で出しています）
 
-__1. 画像が1枚または2枚の場合:__
-
-![画像が1枚または2枚の場合](https://qiita-image-store.s3.amazonaws.com/0/17400/39f11ff9-1ea4-881f-8c4e-a459bb661c75.jpeg)
-
-__2. 画像が3枚または4枚の場合:__
-
-![画像が3枚または4枚の場合](https://qiita-image-store.s3.amazonaws.com/0/17400/5d914968-e65a-b925-0950-33590ef75bf5.jpeg)
-
-__3. 画像が5枚または6枚以上の場合:__
-
-![画像が5枚または6枚以上の場合](https://qiita-image-store.s3.amazonaws.com/0/17400/f9fc27b3-0a6d-a331-1062-e6e49b3889b6.jpeg)
-
-__参考. Xib(MainContentsCell.xib)内における全体のUIパーツ配置の参考:__
-
 ![配置](https://qiita-image-store.s3.amazonaws.com/0/17400/05cf1bf1-9529-5b68-0aa6-6d097e0397ce.png)
 
 レイアウトやその他要素の配置に関することに関しては下記のQiita記事にポイント並びに手順をまとめてありますので、ご確認頂ければ幸いです。
