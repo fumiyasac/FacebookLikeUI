@@ -16,7 +16,7 @@ struct SampleMock {
 
         //サンプルデータ表示用の配列（画像名のバリエーションを変えてお試しください）
         let imagePattern1: [UIImage] = getMockImageList(
-            imageNameList: ["image1", "image2", "image3", "image4", "image5", "image6", "image7"]
+            imageNameList: ["image1", "image2", "image3", "image4", "image5", "image6", "image7", "image29", "image30"]
         )
         let imagePattern2: [UIImage] = getMockImageList(
             imageNameList: ["image8", "image9", "image10", "image11", "image12"]
