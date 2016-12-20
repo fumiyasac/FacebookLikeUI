@@ -14,59 +14,35 @@ struct SampleMock {
         
         var models: [Sample] = []
 
-        //サンプルデータを投入する（画像の設定を変えてお試し下さい）
-        var imageList1: [UIImage] = [UIImage]()
-        var imageList2: [UIImage] = [UIImage]()
-        var imageList3: [UIImage] = [UIImage]()
-
-        let image1 = UIImage(named: "image1")!
-        let image2 = UIImage(named: "image2")!
-        let image3 = UIImage(named: "image3")!
-        let image4 = UIImage(named: "image4")!
-        let image5 = UIImage(named: "image5")!
-        let image6 = UIImage(named: "image6")!
-        let image7 = UIImage(named: "image7")!
-
-        let image8  = UIImage(named: "image8")!
-        let image9  = UIImage(named: "image9")!
-        let image10 = UIImage(named: "image10")!
-        let image11 = UIImage(named: "image11")!
-        let image12 = UIImage(named: "image12")!
-
-        let image13 = UIImage(named: "image13")!
-        let image14 = UIImage(named: "image14")!
-        let image15 = UIImage(named: "image15")!
-        let image16 = UIImage(named: "image16")!
-        let image17 = UIImage(named: "image17")!
-        let image18 = UIImage(named: "image18")!
-        
-        imageList1.append(image1)
-        imageList1.append(image2)
-        imageList1.append(image3)
-        imageList1.append(image4)
-        imageList1.append(image5)
-        imageList1.append(image6)
-        imageList1.append(image7)
-        imageList1.append(image8)
-
-        imageList2.append(image9)
-        imageList2.append(image10)
-        imageList2.append(image11)
-        imageList2.append(image12)
-
-        imageList3.append(image13)
-        imageList3.append(image14)
-        imageList3.append(image15)
-        imageList3.append(image16)
-        imageList3.append(image17)
-        imageList3.append(image18)
+        //サンプルデータ表示用の配列（画像名のバリエーションを変えてお試しください）
+        let imagePattern1: [UIImage] = getMockImageList(
+            imageNameList: ["image1", "image2", "image3", "image4", "image5", "image6", "image7"]
+        )
+        let imagePattern2: [UIImage] = getMockImageList(
+            imageNameList: ["image8", "image9", "image10", "image11", "image12"]
+        )
+        let imagePattern3: [UIImage] = getMockImageList(
+            imageNameList: ["image13", "image14", "image15", "image16", "image17", "image18"]
+        )
+        let imagePattern4: [UIImage] = getMockImageList(
+            imageNameList: ["image19", "image20", "image21"]
+        )
+        let imagePattern5: [UIImage] = getMockImageList(
+            imageNameList: ["image22"]
+        )
+        let imagePattern6: [UIImage] = getMockImageList(
+            imageNameList: ["image23", "image24"]
+        )
+        let imagePattern7: [UIImage] = getMockImageList(
+            imageNameList: ["image25", "image26", "image27", "image28"]
+        )
 
         models.append(
             Sample(
                 title: "今回のサンプルの説明",
                 catchcopy: "Facebookと似たタイル状レイアウトサンプル",
                 description: "今回はFacebookライクな画像の配置方法の例になります。AutoLayoutとクロージャーを使用した仕方を是非マスターしてみると面白いと思います。",
-                imageArray: imageList1,
+                imageArray: imagePattern1,
                 datetime: "2016/12/20"
             )
         )
@@ -75,7 +51,7 @@ struct SampleMock {
                 title: "このサンプルのポイント",
                 catchcopy: "AutoLayoutの制約の変更と優先度",
                 description: "Xibに切り出したTableViewのセル内に画像を配置していきます。位置に関するAutoLayoutをあらかじめ配置しておき、幅と高さの制約をOutletに切り出します。そして幅と高さの制約については優先度を下げておくのがポイントになります。",
-                imageArray: imageList2,
+                imageArray: imagePattern2,
                 datetime: "2016/12/20"
             )
         )
@@ -84,10 +60,57 @@ struct SampleMock {
                 title: "画像をタップすると該当の画像を表示",
                 catchcopy: "クロージャーと画像のGestureRecognizerを利用",
                 description: "画像サムネイルをタップした際は横スクロールの表示画面で該当画像の位置から表示できるようにします。また6枚以上の画像がある際に表示されるボタンを押した場合には、縦の一覧表示をする形にしています。",
-                imageArray: imageList3,
+                imageArray: imagePattern3,
+                datetime: "2016/12/20"
+            )
+        )
+        models.append(
+            Sample(
+                title: "このサンプルの利用や改変に関して",
+                catchcopy: "特に制限はないので自由にカスタマイズなどをしてみて下さい",
+                description: "今回の画像のレイアウトサンプルに関しては、各々のレイアウトパターンが試すことができるように画像を30点ほど入れています。ですのでそれぞれのレイアウトを是非とも試してみてはいかがでしょうか。",
+                imageArray: imagePattern4,
+                datetime: "2016/12/20"
+            )
+        )
+        models.append(
+            Sample(
+                title: "この中の画像の使用に関して",
+                catchcopy: "使っても良いですが画像のクオリティは一旦置いておいてね",
+                description: "このサンプルを作成したときは、ちょうどとてもお腹が空いていて「はやく終わらせてご飯が食べたい！」という思いから画像選んだ結果これになりました。",
+                imageArray: imagePattern5,
+                datetime: "2016/12/20"
+            )
+        )
+        models.append(
+            Sample(
+                title: "他の機能に関する部分の実装について",
+                catchcopy: "今回はタイル状のレイアウト作成が中心なので他の機能は控えめ",
+                description: "今回のメイン部分の他にもUICollectionViewを活用したレイアウトに関しても実装を行なっています。Qiitaの記事内でも原理に関しては説明をしていますが、詳しい実装を見たい場合にはコードやプロジェクト内での設定を参照してください。",
+                imageArray: imagePattern6,
+                datetime: "2016/12/20"
+            )
+        )
+        models.append(
+            Sample(
+                title: "このサンプルに関して",
+                catchcopy: "2016年AdventCalendar「Swiftその2」のネタです",
+                description: "今回のサンプルに関してはQiitaのAdventCalendarのためのサンプルになります。誰もが一度試してみたいと思うFacebookやTwitterで使用されているUIの一部分をトレースして再現して見たものになります。",
+                imageArray: imagePattern7,
                 datetime: "2016/12/20"
             )
         )
         return models
+    }
+
+    //画像ファイル名の配列[String]から画像データの配列[UIImage]型のデータを作成する
+    fileprivate static func getMockImageList(imageNameList: [String]) -> [UIImage] {
+
+        var imageList: [UIImage] = [UIImage]()
+        for (_, imageName) in imageNameList.enumerated() {
+            let imageData = UIImage(named: imageName)!
+            imageList.append(imageData)
+        }
+        return imageList
     }
 }

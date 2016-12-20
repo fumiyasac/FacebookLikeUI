@@ -86,6 +86,11 @@ class MainContentsCell: UITableViewCell {
             contentsImage5,
             contentsImage6
         ]
+        
+        //12/21:【修正】全てのサムネイル格納用UIImageViewのUIimageプロパティに画像をセットする前にnilを入れて初期化する
+        for (_, contentImageView) in targetImageViewSet.enumerated() {
+            contentImageView.image = nil
+        }
 
         //渡された画像をUIImageViewに入れてTapGestureを付与する
         for (index, targetImage) in images.enumerated() {
